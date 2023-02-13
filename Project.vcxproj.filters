@@ -21,5 +21,8 @@
     <ClInclude Include="IArithmeticOperations.hpp">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="ILogicalOperations.hpp">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

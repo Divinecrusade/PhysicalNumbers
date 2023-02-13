@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="IArithmeticOperations.hpp" />
+    <ClInclude Include="ILogicalOperations.hpp" />
     <ClInclude Include="Quantity.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
