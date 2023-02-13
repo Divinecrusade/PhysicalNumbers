@@ -15,6 +15,6 @@ namespace PhysicalNumbers
         static bool operator<=(T const& lhs, T const& rhs) { return lhs < rhs || lhs == rhs; }
         static bool operator>=(T const& lhs, T const& rhs) { return lhs > rhs || lhs == rhs; }
 
-        static bool bool(T const& rhs) = 0;
+        static bool operator bool(T const& rhs) = 0;
     };
 }
