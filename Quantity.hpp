@@ -1,10 +1,8 @@
 #pragma once
 
-#include "ILogicalOperations.hpp"
-
 namespace PhysicalNumbers
 {
-    class Quantity : public ILogicalOperations<Quantity>
+    class Quantity
     {
 
     public:

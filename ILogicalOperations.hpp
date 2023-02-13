@@ -1,20 +1,26 @@
 #pragma once
 
-namespace PhysicalNumbers
+namespace LogicalOperations
 {
+    // Realize compile-time check for realized logical operation
+
+    // Req: operator<
     template<class T>
-    __interface ILogicalOperations
-    {
-        static bool operator<(T const& lhs, T const& rhs) = 0;
+    bool operator>(T const& lhs, T const& rhs)  { return !(lhs < rhs) && (lhs < rhs || rhs < lhs); }
 
-        static bool operator>(T const& lhs, T const& rhs)  { return !(lhs < rhs); }
+    // Req: operator<
+    template<class T>
+    bool operator!=(T const& lhs, T const& rhs) { return lhs < rhs || rhs < lhs; }
 
-        static bool operator!=(T const& lhs, T const& rhs) { return lhs < rhs || rhs < lhs; }
-        static bool operator==(T const& lhs, T const& rhs) { return !(lhs < rhs || rhs < lhs); }
+    // Req: operator<
+    template<class T>
+    bool operator==(T const& lhs, T const& rhs) { return !(lhs < rhs || rhs < lhs); }
 
-        static bool operator<=(T const& lhs, T const& rhs) { return lhs < rhs || lhs == rhs; }
-        static bool operator>=(T const& lhs, T const& rhs) { return lhs > rhs || lhs == rhs; }
+    // Req: operator<
+    template<class T>
+    bool operator<=(T const& lhs, T const& rhs) { return lhs < rhs || !(lhs < rhs || rhs < lhs); }
 
-        static bool operator bool(T const& rhs) = 0;
-    };
+    // Req: operator<
+    template<class T>
+    bool operator>=(T const& lhs, T const& rhs) { return !(lhs < rhs) && (lhs < rhs || rhs < lhs) || !(lhs < rhs || rhs < lhs); }
 }
