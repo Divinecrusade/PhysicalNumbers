@@ -18,14 +18,14 @@ namespace PhysicalNumbers
         static constexpr double init_val2{-2.3};
 
         template<typename T1, typename T2>
-        void send_log(std::wstring const& msg, T1 const& expected, T2 const& got)
+        inline void send_log(std::string const& msg, T1 const& expected, T2 const& got)
         {
-            clog << msg << L"\nExpected: " << expected << L"\nGot: " << got << L"\n";
+            clog << msg << " | Expected: " << expected << " | Got: " << got << "\n";
         }
 
         void creation()
         {
-            static constexpr wchar_t const* msg{L"Creation"};
+            static constexpr char const* msg{"Creation"};
 
             Quantity a1(init_val0);
             Quantity a2(init_val1);
@@ -38,7 +38,7 @@ namespace PhysicalNumbers
 
         void assignment()
         {
-            static constexpr wchar_t const* msg{ L"Assignment" };
+            static constexpr char const* msg{"Assignment"};
 
             Quantity a1(init_val0);
             Quantity a2(init_val1);
@@ -51,7 +51,7 @@ namespace PhysicalNumbers
 
         void logical()
         {
-            static constexpr wchar_t const* msg{ L"Logical" };
+            static constexpr char const* msg{"Logical"};
 
             Quantity a1(init_val0);
             Quantity a2(init_val1);
@@ -68,7 +68,7 @@ namespace PhysicalNumbers
 
         void arithmetic()
         {
-            static constexpr wchar_t const* msg{ L"Arithmetic" };
+            static constexpr char const* msg{"Arithmetic"};
 
             Quantity a1(init_val0);
             Quantity a2(init_val1);
@@ -83,11 +83,12 @@ namespace PhysicalNumbers
 
         void combined()
         {
-            static constexpr wchar_t const* msg{ L"Combined" };
+            static constexpr char const* msg{"Combined"};
 
             Quantity a1(init_val0);
             Quantity a2(init_val1);
             Quantity a3(init_val2);
+            Quantity a4(init_val2);
 
             a1 += a2;
             send_log(msg, init_val0 + init_val1, a1.get_value());
@@ -98,8 +99,8 @@ namespace PhysicalNumbers
             a2 *= a2;
             send_log(msg, init_val1 * init_val1, a2.get_value());
 
-            a2 /= a2;
-            send_log(msg, init_val1, a2.get_value());
+            a2 /= a1;
+            send_log(msg, init_val1 * init_val1 / (init_val0 + init_val1), a2.get_value());
         }
     }
 }
