@@ -19,12 +19,10 @@ namespace PhysicalNumbers
         double const& get_value() const;
         double      & get_value();
 
-        Quantity& operator -=(Quantity const& rhs);
-        Quantity& operator +=(Quantity const& rhs);
-        Quantity& operator *=(Quantity const& rhs);
-        Quantity& operator /=(Quantity const& rhs);
-
-        operator bool() const;
+        Quantity& operator-=(Quantity const& rhs);
+        Quantity& operator+=(Quantity const& rhs);
+        Quantity& operator*=(Quantity const& rhs);
+        Quantity& operator/=(Quantity const& rhs);
 
     private:
 
