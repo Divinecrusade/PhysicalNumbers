@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MetaProgramming.hpp" />
     <ClInclude Include="Quantity.hpp" />
     <ClInclude Include="tests.hpp" />
   </ItemGroup>
