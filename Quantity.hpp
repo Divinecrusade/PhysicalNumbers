@@ -16,6 +16,8 @@ namespace PhysicalNumbers
 
         ~Quantity() = default;
 
+        double const& get_value() const;
+        double      & get_value();
 
     private:
 
