@@ -1,92 +1,111 @@
 #include "Quantity.hpp"
 
-PhysicalNumbers::Quantity::Quantity(double init_val) : val(init_val) { }
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList>::Quantity(double init_val) : val(init_val) { }
 
-PhysicalNumbers::Quantity::Quantity(Quantity const& num) : val(num.val) { }
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList>::Quantity(Quantity const& num) : val(num.val) { }
 
-PhysicalNumbers::Quantity& PhysicalNumbers::Quantity::operator=(Quantity const& num)
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList>& PhysicalNumbers::Quantity<IntList>::operator=(Quantity<IntList> const& num)
 {
     val = num.val;
 
     return *this;
 }
 
-double const& PhysicalNumbers::Quantity::get_value() const
+template<typename IntList>
+double const& PhysicalNumbers::Quantity<IntList>::get_value() const
 {
     return val;
 }
 
-double& PhysicalNumbers::Quantity::get_value()
+template<typename IntList>
+double& PhysicalNumbers::Quantity<IntList>::get_value()
 {
     return const_cast<double&>(const_cast<Quantity const*>(this)->get_value());
 }
 
-PhysicalNumbers::Quantity& PhysicalNumbers::Quantity::operator-=(Quantity const& rhs)
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList>& PhysicalNumbers::Quantity<IntList>::operator-=(Quantity const& rhs)
 {
     return *this = *this - rhs;
 }
 
-PhysicalNumbers::Quantity& PhysicalNumbers::Quantity::operator+=(Quantity const& rhs)
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList>& PhysicalNumbers::Quantity<IntList>::operator+=(Quantity const& rhs)
 {
     return *this = *this + rhs;
 }
 
-PhysicalNumbers::Quantity& PhysicalNumbers::Quantity::operator*=(Quantity const& rhs)
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList>& PhysicalNumbers::Quantity<IntList>::operator*=(Quantity const& rhs)
 {
     return *this = *this * rhs;
 }
 
-PhysicalNumbers::Quantity& PhysicalNumbers::Quantity::operator/=(Quantity const& rhs)
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList>& PhysicalNumbers::Quantity<IntList>::operator/=(Quantity const& rhs)
 {
     return *this = *this / rhs;
 }
 
-bool PhysicalNumbers::operator<(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+bool PhysicalNumbers::operator<(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
     return lhs.get_value() < rhs.get_value();
 }
 
-bool PhysicalNumbers::operator>(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+bool PhysicalNumbers::operator>(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
     return lhs.get_value() > rhs.get_value();
 }
 
-bool PhysicalNumbers::operator==(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+bool PhysicalNumbers::operator==(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
     return lhs.get_value() == rhs.get_value();
 }
 
-bool PhysicalNumbers::operator!=(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+bool PhysicalNumbers::operator!=(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
     return lhs.get_value() != rhs.get_value();
 }
 
-bool PhysicalNumbers::operator<=(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+bool PhysicalNumbers::operator<=(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
     return lhs.get_value() <= rhs.get_value();
 }
 
-bool PhysicalNumbers::operator>=(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+bool PhysicalNumbers::operator>=(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
     return lhs.get_value() >= rhs.get_value();
 }
 
-PhysicalNumbers::Quantity PhysicalNumbers::operator-(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList> PhysicalNumbers::operator-(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
-    return Quantity(lhs.get_value() - rhs.get_value());
+    return Quantity<IntList>(lhs.get_value() - rhs.get_value());
 }
 
-PhysicalNumbers::Quantity PhysicalNumbers::operator+(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList>
+PhysicalNumbers::Quantity<IntList> PhysicalNumbers::operator+(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
 {
-    return Quantity(lhs.get_value() + rhs.get_value());
+    return Quantity<IntList>(lhs.get_value() + rhs.get_value());
 }
 
-PhysicalNumbers::Quantity PhysicalNumbers::operator*(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList1, typename IntList2>
+PhysicalNumbers::Quantity<MetaProgramming::Zip<IntList1, IntList2, MetaProgramming::Plus>> PhysicalNumbers::operator*(Quantity<IntList1> const& lhs, Quantity<IntList2> const& rhs)
 {
-    return Quantity(lhs.get_value() * rhs.get_value());
+    return Quantity<MetaProgramming::Zip<IntList1, IntList2, MetaProgramming::Plus>>(lhs.get_value() * rhs.get_value());
 }
 
-PhysicalNumbers::Quantity PhysicalNumbers::operator/(Quantity const& lhs, Quantity const& rhs)
+template<typename IntList1, typename IntList2>
+PhysicalNumbers::Quantity<MetaProgramming::Zip<IntList1, IntList2, MetaProgramming::Minus>> PhysicalNumbers::operator/(Quantity<IntList1> const& lhs, Quantity<IntList2> const& rhs)
 {
-    return Quantity(lhs.get_value() / rhs.get_value());
+    return Quantity<MetaProgramming::Zip<IntList1, IntList2, MetaProgramming::Minus>>(lhs.get_value() / rhs.get_value());
 }
