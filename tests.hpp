@@ -24,7 +24,7 @@ namespace PhysicalNumbers
             clog << msg << " | Expected: " << expected << " | Got: " << got << "\n";
         }
 
-        void creation()
+        inline void creation()
         {
             static constexpr char const* msg{"Creation"};
 
@@ -37,7 +37,7 @@ namespace PhysicalNumbers
             send_log(msg, init_val2, a3.get_value());
         }
 
-        void assignment()
+        inline void assignment()
         {
             static constexpr char const* msg{"Assignment"};
 
@@ -50,7 +50,7 @@ namespace PhysicalNumbers
             send_log(msg, a2.get_value(), a4.get_value());
         }
 
-        void logical()
+        inline void logical()
         {
             static constexpr char const* msg{"Logical"};
 
@@ -67,7 +67,7 @@ namespace PhysicalNumbers
             send_log(msg, false, a2 <= a3);
         }
 
-        void arithmetic()
+        inline void arithmetic()
         {
             static constexpr char const* msg{"Arithmetic"};
 
@@ -85,7 +85,7 @@ namespace PhysicalNumbers
             send_log(msg, init_val1 * init_val2, (init_val1 * Quantity<IntList<0, 1, 0>>(init_val2)).get_value());
         }
 
-        void combined()
+        inline void combined()
         {
             static constexpr char const* msg{"Combined"};
 
