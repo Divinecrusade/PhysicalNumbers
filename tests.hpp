@@ -80,6 +80,9 @@ namespace PhysicalNumbers
             send_log(msg, init_val0 * init_val1, (a1 * a2).get_value());
             send_log(msg, init_val2 / init_val1, (a3 / a2).get_value());
             send_log(msg, init_val1 * init_val2, (a2 * a3).get_value());
+
+            send_log(msg, init_val1 / init_val2, (init_val1 / Quantity<IntList<0, 1, 0>>(init_val2)).get_value());
+            send_log(msg, init_val1 * init_val2, (init_val1 * Quantity<IntList<0, 1, 0>>(init_val2)).get_value());
         }
 
         void combined()
