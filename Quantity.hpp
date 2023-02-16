@@ -65,6 +65,12 @@ namespace PhysicalNumbers
     template<typename IntList1, typename IntList2>
     Quantity<MetaProgramming::Zip<IntList1, IntList2, MetaProgramming::Minus>> operator/(Quantity<IntList1> const& lhs, Quantity<IntList2> const& rhs);
 
+    template<typename IntList>
+    Quantity<IntList> operator*(double lhs, Quantity<IntList> const& rhs);
+
+    template<typename IntList>
+    Quantity<MetaProgramming::Zip<MetaProgramming::Generate<MetaProgramming::Length<IntList>::value>, IntList, MetaProgramming::Minus>>
+    operator/(double lhs, Quantity<IntList> const& rhs);
 
 
     // Implementation
@@ -166,13 +172,13 @@ namespace PhysicalNumbers
     template<typename IntList>
     Quantity<IntList> operator-(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
     {
-        return Quantity<IntList>(lhs.get_value() - rhs.get_value());
+        return Quantity<IntList>(lhs) -= rhs;
     }
 
     template<typename IntList>
     Quantity<IntList> operator+(Quantity<IntList> const& lhs, Quantity<IntList> const& rhs)
     {
-        return Quantity<IntList>(lhs.get_value() + rhs.get_value());
+        return Quantity<IntList>(lhs) += rhs;
     }
 
     template<typename IntList1, typename IntList2>
@@ -185,5 +191,17 @@ namespace PhysicalNumbers
     Quantity<MetaProgramming::Zip<IntList1, IntList2, MetaProgramming::Minus>> operator/(Quantity<IntList1> const& lhs, Quantity<IntList2> const& rhs)
     {
         return Quantity<MetaProgramming::Zip<IntList1, IntList2, MetaProgramming::Minus>>(lhs.get_value() / rhs.get_value());
+    }
+
+    template<typename IntList>
+    Quantity<IntList> operator*(double lhs, Quantity<IntList> const& rhs)
+    {
+        return Quantity<IntList>(lhs * rhs.get_value());
+    }
+
+    template<typename IntList>
+    Quantity<MetaProgramming::Zip<MetaProgramming::Generate<MetaProgramming::Length<IntList>::value>, IntList, MetaProgramming::Minus>> operator/(double lhs, Quantity<IntList> const& rhs)
+    {
+        return Quantity<MetaProgramming::Zip<MetaProgramming::Generate<MetaProgramming::Length<IntList>::value>, IntList, MetaProgramming::Minus>>(lhs / rhs.get_value());
     }
 }

@@ -40,7 +40,7 @@ namespace MetaProgramming
     template<int N, int M = 0>
     struct Generate
     {
-        using type = typename IntCons<M, typename Generate<N - 1, M + 1>::type>::type;
+        using type = typename IntCons<0, typename Generate<N - 1, M + 1>::type>::type;
     };
 
     template<int M>
