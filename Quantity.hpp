@@ -12,6 +12,8 @@ namespace PhysicalNumbers
 
     public:
 
+        using type = typename IntList;
+
         explicit Quantity(double init_val = 0.);
         Quantity(Quantity const& num);
         Quantity<IntList>& operator=(Quantity<IntList> const& num);
